@@ -76,4 +76,9 @@ public class ItemCategoryServiceImpl implements ItemCategoryService {
 
         return fileName;
     }
+
+    @Override
+    public ItemCategory getCategoryById(int id) {
+        return itemCategoryRepository.findById(id).orElse(null);
+    }
 }

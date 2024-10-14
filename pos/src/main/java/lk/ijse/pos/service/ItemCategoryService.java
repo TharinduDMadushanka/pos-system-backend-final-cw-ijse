@@ -15,4 +15,6 @@ public interface ItemCategoryService {
     void delete(int id);
 
     List<ItemCategory> getAllCategory();
+
+    ItemCategory getCategoryById(int id); // Get category by ID
 }

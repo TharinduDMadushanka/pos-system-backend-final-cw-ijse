@@ -1,5 +1,6 @@
 package lk.ijse.pos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Primary Key for Item
+    private int id; // Primary Key for Item
 
     private String itemCode; // Unique code for the item
 
@@ -22,7 +23,7 @@ public class Item {
     private double unitPrice; // Price of the item
 
     @ManyToOne
-    @JoinColumn(name = "category_id")  // Foreign key to reference ItemCategory
-    private ItemCategory category; // The category selected from the dropdown
+    @JoinColumn(name = "category_id")
+    @JsonIgnore
+    private ItemCategory category; // Mapping to ItemCategory
 }
-

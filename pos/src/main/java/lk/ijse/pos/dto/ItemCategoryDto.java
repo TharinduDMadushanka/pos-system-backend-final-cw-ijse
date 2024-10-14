@@ -1,5 +1,7 @@
 package lk.ijse.pos.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 @Data

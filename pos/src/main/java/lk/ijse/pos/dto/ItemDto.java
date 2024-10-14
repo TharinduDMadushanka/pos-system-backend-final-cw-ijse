@@ -4,14 +4,10 @@ import lombok.Data;
 
 @Data
 public class ItemDto {
-
-    private int id;
-    private String itemCode;
-    private String itemName;
-    private String description;
-    private int qty;
-    private double unitPrice;
-    private int qoh;
-    private int categoryId;
-
+    private String itemCode; // Code for the item
+    private String itemName; // Name of the item
+    private String description; // Description of the item
+    private int qty; // Quantity of the item
+    private double unitPrice; // Unit price of the item
+    private int categoryId; // ID of the selected category
 }

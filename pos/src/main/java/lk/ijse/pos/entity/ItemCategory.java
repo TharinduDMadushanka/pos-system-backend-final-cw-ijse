@@ -1,10 +1,10 @@
 package lk.ijse.pos.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -18,4 +18,7 @@ public class ItemCategory {
 
     // Field to store the uploaded image file name
     private String image;
+
+//    @OneToMany(mappedBy = "category")
+//    private List<ItemCategory> categories;
 }
