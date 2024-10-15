@@ -81,4 +81,5 @@ public class ItemCategoryServiceImpl implements ItemCategoryService {
     public ItemCategory getCategoryById(int id) {
         return itemCategoryRepository.findById(id).orElse(null);
     }
+
 }

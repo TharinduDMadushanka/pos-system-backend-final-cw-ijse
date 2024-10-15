@@ -50,4 +50,9 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> getAllItems() {
         return itemRepository.findAll();
     }
+
+    @Override
+    public Item getItemById(int id) {
+        return itemRepository.findById(id).orElse(null);
+    }
 }

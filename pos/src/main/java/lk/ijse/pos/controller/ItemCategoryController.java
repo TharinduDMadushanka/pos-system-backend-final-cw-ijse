@@ -18,6 +18,7 @@ public class ItemCategoryController {
     @Autowired
     private ItemCategoryService itemCategoryService;
 
+
     @PostMapping("/create")
     public ResponseEntity<ItemCategory> createCategory(@RequestParam("name") String name,
                                                        @RequestParam("image") MultipartFile imageFile) {

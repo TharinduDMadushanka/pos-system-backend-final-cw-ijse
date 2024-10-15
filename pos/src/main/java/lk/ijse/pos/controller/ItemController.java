@@ -1,12 +1,11 @@
 package lk.ijse.pos.controller;
 
-import lk.ijse.pos.dto.ItemDto;
+import lk.ijse.pos.dto.ItemReqDto;
 import lk.ijse.pos.entity.Item;
 import lk.ijse.pos.entity.ItemCategory;
-import lk.ijse.pos.repository.ItemCategoryRepository;
+import lk.ijse.pos.service.ItemCategoryService;
 import lk.ijse.pos.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +19,9 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private ItemCategoryService itemCategoryService;
+
     @GetMapping
     public ResponseEntity<List<Item>> getAllItems() {
         List<Item> items = itemService.getAllItems();
@@ -27,27 +29,45 @@ public class ItemController {
     }
 
     @PostMapping
-    public ResponseEntity<Item> createItem(@RequestBody Item item) {
+    public ResponseEntity<Item> createItem(@RequestBody ItemReqDto itemReqDto) {
+
+        Item item = new Item();
+        item.setItemCode(itemReqDto.getItemCode());
+        item.setItemName(itemReqDto.getItemName());
+        item.setDescription(itemReqDto.getDescription());
+        item.setQty(itemReqDto.getQty());
+        item.setUnitPrice(itemReqDto.getUnitPrice());
+
+        ItemCategory category = itemCategoryService.getCategoryById(itemReqDto.getCategoryId());
+        item.setCategory(category);
+
         Item createdItem = itemService.createItem(item);
 
-        return ResponseEntity.status(201).body(item);
+        return ResponseEntity.status(201).body(createdItem);
+
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable int id, @RequestBody Item item) {
-        Item updatedItem = itemService.updateItem(id, item);
+    public ResponseEntity<Item> updateItem(@PathVariable int id, @RequestBody ItemReqDto itemReqDto) {
 
-        if (updatedItem != null) {
-            return ResponseEntity.status(201).body(updatedItem);
-        }else {
-            return ResponseEntity.status(404).body(null);
-        }
+        Item item = new Item();
+        item.setItemCode(itemReqDto.getItemCode());
+        item.setItemName(itemReqDto.getItemName());
+        item.setDescription(itemReqDto.getDescription());
+        item.setQty(itemReqDto.getQty());
+        item.setUnitPrice(itemReqDto.getUnitPrice());
+
+        ItemCategory category = itemCategoryService.getCategoryById(itemReqDto.getCategoryId());
+        item.setCategory(category);
+
+        Item updatedItem = itemService.updateItem(id, item);
+        return ResponseEntity.status(200).body(updatedItem);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Item> deleteItem(@PathVariable int id) {
+    public ResponseEntity<String> deleteItem(@PathVariable int id) {
         itemService.deleteItem(id);
-        return ResponseEntity.status(200).body(null);
+        return ResponseEntity.status(200).body("Item deleted");
     }
 
 }

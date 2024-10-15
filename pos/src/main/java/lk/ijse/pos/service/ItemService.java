@@ -9,4 +9,5 @@ public interface ItemService {
     Item updateItem(int id, Item item); // Update an existing item by ID
     void deleteItem(int id); // Delete an item by ID
     List<Item> getAllItems(); // Retrieve all items
+    Item getItemById(int id);
 }

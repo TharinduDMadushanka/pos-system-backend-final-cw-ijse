@@ -19,6 +19,8 @@ public class ItemCategory {
     // Field to store the uploaded image file name
     private String image;
 
-//    @OneToMany(mappedBy = "category")
-//    private List<ItemCategory> categories;
+    @JsonIgnore
+    @OneToMany(mappedBy = "category")
+    private List<Item> items;
+
 }

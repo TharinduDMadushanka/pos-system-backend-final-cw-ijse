@@ -16,5 +16,5 @@ public interface ItemCategoryService {
 
     List<ItemCategory> getAllCategory();
 
-    ItemCategory getCategoryById(int id); // Get category by ID
+    ItemCategory getCategoryById(int id);
 }

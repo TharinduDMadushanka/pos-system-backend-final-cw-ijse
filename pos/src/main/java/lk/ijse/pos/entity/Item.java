@@ -9,17 +9,20 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // Primary Key for Item
+    private int id;
 
-    private String itemCode; // Unique code for the item
+    private String itemCode;
 
-    private String itemName; // Name of the item
+    private String itemName;
 
-    private String description; // Description of the item
+    private String description;
 
-    private int qty; // Quantity of the item
+    private int qty;
 
-    private double unitPrice; // Price of the item
+    private double unitPrice;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private ItemCategory category;
 
 }
