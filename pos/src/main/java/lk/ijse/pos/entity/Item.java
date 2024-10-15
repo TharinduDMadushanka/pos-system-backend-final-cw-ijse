@@ -1,6 +1,5 @@
 package lk.ijse.pos.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,8 +21,5 @@ public class Item {
 
     private double unitPrice; // Price of the item
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    @JsonIgnore
-    private ItemCategory category; // Mapping to ItemCategory
+
 }

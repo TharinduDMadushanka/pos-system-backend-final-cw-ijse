@@ -9,5 +9,4 @@ public class ItemDto {
     private String description; // Description of the item
     private int qty; // Quantity of the item
     private double unitPrice; // Unit price of the item
-    private int categoryId; // ID of the selected category
 }
