@@ -31,6 +31,8 @@ public class ItemController {
     @PostMapping
     public ResponseEntity<Item> createItem(@RequestBody ItemReqDto itemReqDto) {
 
+//        System.out.println(itemReqDto.getCategoryId());
+
         Item item = new Item();
         item.setItemCode(itemReqDto.getItemCode());
         item.setItemName(itemReqDto.getItemName());
@@ -41,7 +43,11 @@ public class ItemController {
         ItemCategory category = itemCategoryService.getCategoryById(itemReqDto.getCategoryId());
         item.setCategory(category);
 
+//        System.out.println(category.getId());
+
         Item createdItem = itemService.createItem(item);
+
+//        System.out.println(createdItem.toString());
 
         return ResponseEntity.status(201).body(createdItem);
 
@@ -50,7 +56,10 @@ public class ItemController {
     @PutMapping("/{id}")
     public ResponseEntity<Item> updateItem(@PathVariable int id, @RequestBody ItemReqDto itemReqDto) {
 
+//        System.out.println(id);
+
         Item item = new Item();
+        item.setId(id);
         item.setItemCode(itemReqDto.getItemCode());
         item.setItemName(itemReqDto.getItemName());
         item.setDescription(itemReqDto.getDescription());

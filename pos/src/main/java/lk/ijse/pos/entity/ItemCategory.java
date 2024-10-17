@@ -2,12 +2,16 @@ package lk.ijse.pos.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ItemCategory {
 
     @Id
@@ -21,6 +25,6 @@ public class ItemCategory {
 
     @JsonIgnore
     @OneToMany(mappedBy = "category")
-    private List<Item> items;
+    private Set<Item> items;
 
 }

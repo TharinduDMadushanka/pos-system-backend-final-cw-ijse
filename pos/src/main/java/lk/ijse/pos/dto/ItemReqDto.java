@@ -1,8 +1,11 @@
 package lk.ijse.pos.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ItemReqDto {
     private String itemCode;
     private String itemName;

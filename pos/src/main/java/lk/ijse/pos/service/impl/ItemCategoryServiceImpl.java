@@ -79,7 +79,13 @@ public class ItemCategoryServiceImpl implements ItemCategoryService {
 
     @Override
     public ItemCategory getCategoryById(int id) {
-        return itemCategoryRepository.findById(id).orElse(null);
+        ItemCategory category = itemCategoryRepository.findById(id).orElse(null);
+
+        if (category == null) {
+            throw new IllegalArgumentException("ItemCategory not found with id: " + id);
+        }else {
+            return category;
+        }
     }
 
 }
