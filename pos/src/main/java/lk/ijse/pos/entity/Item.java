@@ -1,5 +1,6 @@
 package lk.ijse.pos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,5 +28,9 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private ItemCategory category;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
+    private Stock stock;
 
 }
