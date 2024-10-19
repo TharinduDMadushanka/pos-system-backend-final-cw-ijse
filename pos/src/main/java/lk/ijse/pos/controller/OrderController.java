@@ -25,19 +25,21 @@ public class OrderController {
     @GetMapping
     public ResponseEntity<List<OrderDto>> getAllOrders() {
         List<OrderDto> orders = orderService.getAllOrders();
-        return ResponseEntity.status(200).body(orders);
+        return ResponseEntity.ok(orders);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderDto> getOrderById(@PathVariable int id) {
         OrderDto orderDto = orderService.getOrderById(id);
-        return ResponseEntity.status(200).body(orderDto);
+        if (orderDto == null) {
+            return ResponseEntity.status(404).body(null); // or use ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(orderDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteOrderById(@PathVariable int id) {
+    public ResponseEntity<Void> deleteOrderById(@PathVariable int id) {
         orderService.deleteOrder(id);
-        return ResponseEntity.status(200).body("Item deleted");
+        return ResponseEntity.noContent().build(); // No content after deletion
     }
-
 }
