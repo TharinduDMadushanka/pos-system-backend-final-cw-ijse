@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -32,5 +35,9 @@ public class Item {
     @JsonIgnore
     @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
     private Stock stock;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private Set<OrderDetail> orderDetails;
 
 }

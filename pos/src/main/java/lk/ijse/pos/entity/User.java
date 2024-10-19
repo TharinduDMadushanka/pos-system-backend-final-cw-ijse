@@ -1,10 +1,11 @@
 package lk.ijse.pos.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,5 +18,10 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Order> orders;
+
 
 }
